@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnIT - Bilişim ve Yazılım Akademisi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+  <body class="layout-app">
+
+    <!-- Üst Menü -->
+    <header>
+        <a href="index.html" class="brand">
+          <span>&lt;/&gt;</span> LearnIT
+      </a>
+
+      <nav class="nav-links" aria-label="Ana Menü">
+        <a href="index.html" class="nav-link active">Dersler</a>
+        <a href="files.html" class="nav-link">Dosya Paylaşımı</a>
+        <a href="lesson-add.html" class="nav-link">+ Ders Ekle</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Backend oturumuna göre kullanıcı adı ve rol gösterilebilir -->
+        <span class="user-badge">Ziyaretçi</span>
+        <a href="login.html" class="btn btn-secondary">Giriş Yap</a>
+      </div>
+    </header>
+
+    <!-- Ana Taşıyıcı -->
+    <div class="app-container">
+
+
+      <aside>
+        <div class="sidebar-header">
+          <form class="sidebar-search" method="GET" action="index.html">
+            <input type="search" name="q" placeholder="Müfredatta ara...">
+          </form>
+        </div>
+        <ul class="course-list">
+          <li class="course-item active">
+            <a href="index.html?lesson_id=1">
+              <span class="tag">Sistem &amp; Linux</span>
+              <strong>Linux Standart Akışlar ve Pipe Mimarisi</strong>
+            </a>
+          </li>
+          <li class="course-item">
+            <a href="index.html?lesson_id=2">
+              <span class="tag">Veritabanı</span>
+              <strong>İlişkisel Veritabanlarında B-Tree İndeksleri</strong>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- İçerik Alanı -->
+      <main>
+        <!-- Ders & Dokümantasyon -->
+        <section class="content-card">
+            <!-- Video linki varsa kapsayıcıya "has-video" sınıfı eklenir -->
+            <div class="video-wrapper">
+              <iframe src="" title="Ders Videosu" allowfullscreen></iframe>
+            </div>
+
+            <div class="lesson-meta">
+              <h1>Linux Standart Akışlar ve Pipe Mimarisi</h1>
+              <div class="doc-section">
+                Standart girdi (stdin: 0), standart çıktı (stdout: 1) ve hata akışı (stderr: 2) temelleri. Boru hatları
+                (|) üzerinden veri işleme.
+              </div>
+              <pre class="code-box">#!/usr/bin/env bash
+# Hataları /dev/null adresine yönlendirip yalnızca çıktıyı yakalama
+find /var/log -type f -name '*.log' 2>/dev/null | grep -E 'auth|syslog'</pre>
+            </div>
+        </section>
+
+        <!-- Soru-Cevap & Tartışma -->
+        <section class="content-card">
+          <div class="interaction-tabs">
+            <a href="index.html?lesson_id=1&amp;tab=questions" class="tab-btn active">Soru &amp; Cevap</a>
+            <a href="index.html?lesson_id=1&amp;tab=comments" class="tab-btn">Yorumlar</a>
+          </div>
+
+            <div class="auth-alert">
+              Soru sormak, yorum veya yanıt yazmak için <a href="login.html">giriş yapmalısınız</a>.
+            </div>
+
+              <!-- Backend bağlantısı için hazır gönderi formu -->
+              <form class="post-form" method="POST" action="post_add.php">
+                <input type="hidden" name="lesson_id" value="1">
+                <input type="hidden" name="type" value="questions">
+                <input type="text" name="title" placeholder="Soru başlığı...">
+                <textarea name="content" placeholder="Sorunuzu veya düşüncenizi yazın..." required></textarea>
+                <div class="form-actions">
+                  <button type="submit" class="btn">Gönder</button>
+                </div>
+              </form>
+
+              <div class="feed-list">
+                <article class="feed-card">
+                  <div class="feed-card-header">
+                    <span class="author">Ahmet</span>
+                  </div>
+                  <div class="post-title">Boru hattında stderr yönlendirmesi</div>
+                  <div class="feed-card-body">
+                    Boru hattında stderr akışını doğrudan sonraki komutun stdin'ine iletmek için 2&gt;&amp;1 yerine
+                    |&amp; operatörünü kullanabilir miyiz?
+                  </div>
+
+                  <div class="replies-container">
+                    <div class="reply-card">
+                      <div class="feed-card-header">
+                        <span class="author">
+                          Hoca
+                          <span class="badge-instructor">Öğretmen</span>
+                        </span>
+                      </div>
+                      <div class="reply-card-body">
+                        Evet, Bash 4.0 ve sonrasında |&amp; sözdizimi 2&gt;&amp;1 | ifadesinin doğrudan kısaltmasıdır.
+                      </div>
+                    </div>
+
+                    <form class="reply-form" method="POST" action="reply_add.php">
+                      <input type="hidden" name="post_id" value="1">
+                      <input type="text" name="content" placeholder="Bu soruya yanıt yaz..." required>
+                      <button type="submit" class="btn btn-secondary btn-sm">Cevapla</button>
+                    </form>
+                  </div>
+                </article>
+              </div>
+        </section>
+      </main>
+    </div>
+
+  </body>
+
+</html>

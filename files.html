@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dosya Paylaşımı - LearnIT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Üst Menü -->
+  <header>
+    <a href="index.html" class="brand">
+      <span>&lt;/&gt;</span> LearnIT
+    </a>
+
+    <nav class="nav-links" aria-label="Ana Menü">
+      <a href="index.html" class="nav-link">Dersler</a>
+      <a href="files.html" class="nav-link active">Dosya Paylaşımı</a>
+      <a href="lesson-add.html" class="nav-link">+ Ders Ekle</a>
+    </nav>
+
+    <div class="nav-actions">
+      <span class="user-badge">Ziyaretçi</span>
+      <a href="login.html" class="btn btn-secondary">Giriş Yap</a>
+    </div>
+  </header>
+
+  <!-- Dosya Paylaşımı Ana İçerik -->
+  <main class="page-container">
+    <div class="page-header">
+      <div>
+        <h1>Dosya Paylaşımı</h1>
+        <p class="page-subtitle">Ders notları, kaynak kodlar ve çalışma dosyalarını yükleyin veya indirin.</p>
+      </div>
+    </div>
+
+    <!-- Dosya Yükleme Formu -->
+    <section class="content-card">
+      <h2 class="card-title">Yeni Dosya Paylaş</h2>
+
+      <div class="auth-alert">
+        Dosya yükleyebilmek için <a href="login.html">giriş yapmalısınız</a>.
+      </div>
+
+      <form class="post-form post-form--no-margin" method="POST" action="file_upload.php" enctype="multipart/form-data">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fileTitle">Dosya Başlığı</label>
+            <input type="text" id="fileTitle" name="title" placeholder="Örn: Linux Pipe Özet Notları" required>
+          </div>
+
+          <div class="form-group">
+            <label for="fileLesson">İlgili Ders / Kategori</label>
+            <select id="fileLesson" name="lesson_id" required>
+              <option value="1">Sistem &amp; Linux - Linux Standart Akışlar</option>
+              <option value="2">Veritabanı - B-Tree İndeksleri</option>
+              <option value="0">Genel Kaynaklar</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fileDescription">Açıklama</label>
+          <textarea id="fileDescription" name="description" placeholder="Dosya içeriği hakkında kısa açıklama..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sharedFileInput">Dosya Seçin</label>
+            <input type="file" id="sharedFileInput" name="shared_file" class="file-input" required>
+            <span class="form-hint">İzin verilen türler backend tarafında doğrulanacaktır (PDF, ZIP, SQL, SH, TXT vb.).</span>
+          </div>
+
+          <div class="form-group">
+            <label for="fileVisibility">Erişim İzni</label>
+            <select id="fileVisibility" name="visibility">
+              <option value="all">Herkese Açık</option>
+              <option value="students">Sadece Kayıtlı Öğrenciler</option>
+              <option value="instructor">Sadece Eğitmenler</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Dosyayı Yükle ve Paylaş</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Paylaşılan Dosyalar Listesi -->
+    <section class="content-card">
+      <h2 class="card-title">Paylaşılan Dosyalar</h2>
+
+      <form class="filter-bar" method="GET" action="files.html">
+        <input type="search" name="q" placeholder="Dosya adı veya açıklamada ara...">
+        <select name="category">
+          <option value="">Tüm Kategoriler</option>
+          <option value="linux">Sistem &amp; Linux</option>
+          <option value="database">Veritabanı</option>
+          <option value="general">Genel Kaynaklar</option>
+        </select>
+        <button type="submit" class="btn btn-secondary">Filtrele</button>
+      </form>
+
+      <div class="file-list">
+        <article class="file-card">
+          <div class="file-info">
+            <div class="file-title-row">
+              <span class="file-ext-badge">PDF</span>
+              <span class="file-title">Linux Standart Akışlar ve Yönlendirme Rehberi</span>
+            </div>
+            <p class="file-desc">stdin, stdout, stderr ve pipe operatörlerinin örnek komutlarla özet anlatımı.</p>
+            <div class="file-meta">
+              <span>Kategori: Sistem &amp; Linux</span>
+              <span>Yükleyen: Hoca <span class="badge-instructor">Öğretmen</span></span>
+              <span>Boyut: 420 KB</span>
+            </div>
+          </div>
+
+          <div class="file-actions">
+            <a href="file_download.php?id=1" class="btn btn-sm">İndir</a>
+            <form method="POST" action="file_delete.php">
+              <input type="hidden" name="file_id" value="1">
+              <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+            </form>
+          </div>
+        </article>
+
+        <article class="file-card">
+          <div class="file-info">
+            <div class="file-title-row">
+              <span class="file-ext-badge">SQL</span>
+              <span class="file-title">B-Tree İndeks Performans Test Sorguları</span>
+            </div>
+            <p class="file-desc">PostgreSQL üzerinde EXPLAIN ANALYZE ile indeks karşılaştırması yapan örnek SQL dosyası.</p>
+            <div class="file-meta">
+              <span>Kategori: Veritabanı</span>
+              <span>Yükleyen: Ahmet</span>
+              <span>Boyut: 18 KB</span>
+            </div>
+          </div>
+
+          <div class="file-actions">
+            <a href="file_download.php?id=2" class="btn btn-sm">İndir</a>
+            <form method="POST" action="file_delete.php">
+              <input type="hidden" name="file_id" value="2">
+              <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+            </form>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

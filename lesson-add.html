@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yeni Ders Ekle - LearnIT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Üst Menü -->
+  <header>
+    <a href="index.html" class="brand">
+      <span>&lt;/&gt;</span> LearnIT
+    </a>
+
+    <nav class="nav-links" aria-label="Ana Menü">
+      <a href="index.html" class="nav-link">Dersler</a>
+      <a href="files.html" class="nav-link">Dosya Paylaşımı</a>
+      <a href="lesson-add.html" class="nav-link active">+ Ders Ekle</a>
+    </nav>
+
+    <div class="nav-actions">
+      <span class="user-badge">Ziyaretçi</span>
+      <a href="login.html" class="btn btn-secondary">Giriş Yap</a>
+    </div>
+  </header>
+
+  <!-- Ders Ekleme Formu -->
+  <main class="page-container">
+    <div class="page-header">
+      <div>
+        <h1>Yeni Müfredat / Ders Ekle</h1>
+        <p class="page-subtitle">Yalnızca yetkili eğitmen hesapları tarafından backend üzerinden onaylanır.</p>
+      </div>
+    </div>
+
+    <section class="content-card">
+      <form class="post-form post-form--no-margin" method="POST" action="lesson_add.php">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lessonTitleInput">Ders Başlığı</label>
+            <input type="text" id="lessonTitleInput" name="title" placeholder="Örn: Linux Dosya İzinleri (chmod/chown)" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lessonCategoryInput">Kategori</label>
+            <input type="text" id="lessonCategoryInput" name="category" placeholder="Örn: Linux, SQL, PHP" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lessonVideoUrlInput">Embed Video URL (İsteğe bağlı)</label>
+          <input type="url" id="lessonVideoUrlInput" name="video_url" placeholder="https://...">
+        </div>
+
+        <div class="form-group">
+          <label for="lessonDescriptionInput">Ders Dokümantasyonu</label>
+          <textarea id="lessonDescriptionInput" name="description" placeholder="Ders dokümantasyonu ve anlatım özeti" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="lessonCodeInput">Örnek Kod / Terminal Komutları</label>
+          <textarea id="lessonCodeInput" name="code_snippet" class="code-textarea" placeholder="Terminal komutları veya örnek kod blokları"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Dersi Kaydet</button>
+          <a href="index.html" class="btn btn-secondary">İptal</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>
