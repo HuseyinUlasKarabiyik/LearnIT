@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giriş Yap - LearnIT</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Üst Menü -->
@@ -31,35 +33,39 @@
     <section class="content-card">
       <h1 class="card-title">LearnIT Giriş Yap</h1>
 
-      <form class="post-form post-form--no-margin" method="POST" action="login.php">
-        <div class="form-group">
-          <label for="authUsernameInput">Kullanıcı Adı</label>
-          <input type="text" name="username" id="authUsernameInput" placeholder="Kullanıcı adınızı girin" required autocomplete="username">
-        </div>
+        <!-- PHP bağlandığında method="POST" action="login.php" olarak güncellenecek -->
+        <form class="post-form post-form--no-margin" method="GET" action="index.html">
+          <div class="form-group">
+            <label for="authUsernameInput">Kullanıcı Adı</label>
+            <input type="text" name="username" id="authUsernameInput" placeholder="Kullanıcı adınızı girin" required
+              autocomplete="username">
+          </div>
 
-        <div class="form-group">
-          <label for="authPasswordInput">Şifre</label>
-          <input type="password" name="password" id="authPasswordInput" placeholder="Şifrenizi girin" required autocomplete="current-password">
-        </div>
+          <div class="form-group">
+            <label for="authPasswordInput">Şifre</label>
+            <input type="password" name="password" id="authPasswordInput" placeholder="Şifrenizi girin" required
+              autocomplete="current-password">
+          </div>
 
-        <div class="form-group">
-          <label for="authRoleSelect">Hesap Türü</label>
-          <select name="role" id="authRoleSelect">
-            <option value="student">Öğrenci Girişi</option>
-            <option value="instructor">Öğretmen (Eğitmen) Girişi</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="authRoleSelect">Hesap Türü</label>
+            <select name="role" id="authRoleSelect">
+              <option value="student">Öğrenci Girişi</option>
+              <option value="instructor">Öğretmen (Eğitmen) Girişi</option>
+            </select>
+          </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn btn-block">Oturum Aç</button>
-        </div>
-      </form>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-block">Oturum Aç</button>
+          </div>
+        </form>
 
-      <div class="auth-footer">
-        Derslere göz atmak için <a href="index.html">ana sayfaya dönün</a>.
-      </div>
+        <div class="auth-footer">
+          Derslere göz atmak için <a href="index.html">ana sayfaya dönün</a>.
+        </div>
     </section>
   </main>
 
 </body>
+
 </html>
